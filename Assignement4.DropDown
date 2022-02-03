@@ -1,0 +1,43 @@
+package week2.day2;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Assignment4DropDown {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriverManager.chromedriver().setup();
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("http://leafground.com/pages/Button.html");
+		driver.manage().window().maximize();
+		driver.get("http://leafground.com/pages/Dropdown.html");
+		WebElement dd = driver.findElement(By.xpath("//select[@id='dropdown1']"));
+        Select dd1 = new Select(dd);
+        dd1.selectByIndex(1);
+        
+        WebElement dtext = driver.findElement(By.xpath("//select[@name='dropdown2']"));
+        Select dt = new Select(dtext);
+        dt.selectByVisibleText("Appium");
+        
+        Thread.sleep(2000);
+        WebElement dvalue = driver.findElement(By.xpath("//select[@id='dropdown3']"));
+        Select dv = new Select(dvalue);
+        dv.selectByValue("3");
+        
+        Select ds = new Select(driver.findElement(By.xpath("//select[@class='dropdown']")));
+        List<WebElement> l = ds.getOptions();
+        System.out.println(l.size());
+        
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//option[text()='You can also use sendKeys to select']/..")).sendKeys("Loadrunner");
+        driver.findElement(By.xpath("(//option[@value='4'])[6]")).click();
+        
+	}
+
+}
