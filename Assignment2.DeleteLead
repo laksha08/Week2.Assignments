@@ -1,0 +1,48 @@
+package week2.day2;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class DeleteLead {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriverManager.chromedriver().setup();
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("http://leaftaps.com/opentaps/control/main");
+		driver.manage().window().maximize();
+		driver.findElement(By.id ("username")).sendKeys("DemoCSR");
+	    driver.findElement(By.id ("password")).sendKeys("crmsfa");
+	    driver.findElement(By.className("decorativeSubmit")).click();
+	    driver.findElement(By.xpath("//a[contains (text(),'CRM/SFA')]")).click();
+	    driver.findElement(By.xpath("//a[text()='Leads']")).click();
+	    driver.findElement(By.xpath("//a[text()='Find Leads']")).click();
+	    Thread.sleep(2000);
+	    driver.findElement(By.xpath("(//em[@class='x-tab-left']/span)[2]")).click();
+	    driver.findElement(By.xpath("//input[@name='phoneNumber']")).sendKeys("11111");
+	    Thread.sleep(2000);
+	    driver.findElement(By.xpath("//button[text()='Find Leads']")).click();
+	    Thread.sleep(2000);
+	    String fn = driver.findElement(By.xpath("(//div[@class='x-grid3-cell-inner x-grid3-col-firstName'])[1]")).getText();
+	    System.out.println(fn);
+	    Thread.sleep(2000);
+	    driver.findElement(By.xpath("(//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a)[1]")).click();
+	    driver.findElement(By.xpath("//a[@class='subMenuButtonDangerous']")).click();
+	    Thread.sleep(2000);
+	    driver.findElement(By.xpath("//a[text()='Find Leads']")).click();
+	    driver.findElement(By.xpath("//input[@name='id']")).sendKeys(fn);
+	    driver.findElement(By.xpath("(//button[@class='x-btn-text'])[6]")).click();
+	    Thread.sleep(2000);
+	    String msg = driver.findElement(By.xpath("//div[text()='No records to display']")).getText();
+	    System.out.println(msg);
+	    Thread.sleep(2000);
+	    if(msg.contains("No records to display")) {
+	    	System.out.println("Delete Successful");
+	    }
+	    else {
+	    	System.out.println("Delete NOT successful");
+	    }
+	}
+
+}
