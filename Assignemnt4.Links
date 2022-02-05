@@ -1,9 +1,5 @@
 package week2.day2;
-
-import java.util.List;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -30,8 +26,8 @@ public class Assignment4Link {
 			System.out.println("Not Borken Link");
 		}
 		
-	   List<WebElement> num = driver.findElements(By.tagName("a"));
-	   System.out.println(num.size());
+	   int numberOfLinks = driver.findElements(By.tagName("a")).size();
+	   System.out.println(numberOfLinks);
 		
 	}
 
