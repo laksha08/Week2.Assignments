@@ -17,10 +17,10 @@ public class Assignment4Image {
 		String imb = driver.findElement(By.xpath("//img[@src='../images/abcd.jpg']")).getAttribute("naturalWidth");
 		System.out.println(imb);
 		if(imb.equals("0")) {
-			System.out.println("Broken Link");
+			System.out.println("Broken Image");
 		}
 		else {
-			System.out.println("Not Borken Link");
+			System.out.println("Not Borken Image");
 	}
 		Thread.sleep(2000);
 		 driver.findElement(By.xpath("//img[@src='../images/keyboard.png']")).sendKeys(Keys.ENTER);
